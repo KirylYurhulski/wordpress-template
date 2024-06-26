@@ -16,44 +16,68 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+	<script defer
+		src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+		integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous">
+	</script>
+ 
 	<?php wp_head(); ?>
+	<script async src="https://cse.google.com/cse.js?cx=2069ff9aaf5234979"></script>
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'blog' ); ?></a>
+	<header class="header text-center">	    
+		<nav class="navbar navbar-expand-lg navbar-dark" >
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navigation"
+				aria-controls="navigation"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+						<img
+							class="profile-image mb-3 rounded-circle mx-auto"
+							src="<?php echo get_template_directory_uri() . '/assets/images/profile.png' ?>" alt="image" >			
+					
+						<?php
+							$blog_description = get_bloginfo( 'description', 'display' );
+							if ( $blog_description || is_customize_preview() ) : ?>
+							<div class="bio auto">
+								<?php echo $blog_description; ?>
+							</div>
+						<?php endif; ?>
+					  
+						<?php social_menu( [ 'theme_location'  => 'menu-3' ] ); ?>
+					<hr> 
+				</div>
+				
 				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$blog_description = get_bloginfo( 'description', 'display' );
-			if ( $blog_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $blog_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+					header_menu( [ 'theme_location'  => 'menu-2' ] );
+				?>				
+				
+				<div class="my-2 my-md-3">
+						<a class="btn btn-primary" href="https://themes.3rdwavemedia.com/" target="_blank">Subscribe</a>
+				</div>
+			</div>
+		</nav>
+	</header>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'blog' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+	<div class="main-wrapper">
+		<section class="cta-section theme-bg-light py-5">
+			<div class="container text-center">		
+				<h4>
+					<a style="color:black" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+						<?php bloginfo( 'name' ); ?>
+					</a>
+				</h4>
+				
+				<div class="gcse-search"></div>
+			</div><!--//container-->
+		</section>
